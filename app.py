@@ -23,8 +23,9 @@ def abrir_img_registro(id):
 	img_src = str(imagen[1]).split('"')
 	# crea el link con la base_url y
 	link_imagen = base_url + img_src[5][2:]
+
 	return webbrowser.open(link_imagen, new=1)
 
-print(buscar_n_registros('Carcharodon-carcharias'))
+print(buscar_n_registros('Bufo-bufo'))
 
-abrir_img_registro('121116')
+abrir_img_registro('225169')
