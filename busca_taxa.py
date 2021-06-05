@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-scientific_name = "Schizocosa-malitiosa"
+scientific_name = "Alectoris-chukar"
 
 url = 'https://www.ecoregistros.org/ficha/' + scientific_name
 

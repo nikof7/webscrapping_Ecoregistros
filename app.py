@@ -4,13 +4,14 @@ import webbrowser
 
 base_url = "https://www.ecoregistros.org"
 
+sp = 'Alectoris-chukar'
+
 def buscar_n_registros(name):
 	url = base_url + '/ficha/' + name
 	r = requests.get(url)
 	soup = BeautifulSoup(r.content,'html.parser')
 	n_registros = str(soup.find_all('span', class_='tamanioPequenio colorFuenteDescripcion center')[4])
 	return n_registros[86:-11]
-
 
 def abrir_img_registro(id):
 	url_by_id = base_url + "/site/imagen.php?id=" + id
@@ -26,6 +27,21 @@ def abrir_img_registro(id):
 
 	return webbrowser.open(link_imagen, new=1)
 
-print(buscar_n_registros('Bufo-bufo'))
+def id_ultima_img(taxa):
+	url = base_url + '/ficha/' + taxa
 
-abrir_img_registro('225169')
+	r = requests.get(url)
+
+	soup = BeautifulSoup(r.content,'html.parser')
+
+	# El [0] busca solo el primer elemento, el de fotografía, hay otro elemento que es de video
+	div_con_datos = soup.find_all('div', style='width:300px;height:390px;margin-left:20px;margin-right:20px;float:center;display:inline-block;vertical-align:top')[0]
+
+	forma_lista = div_con_datos.text.split(' ')
+
+	id_final = forma_lista[2].split("\xa0")[0]
+
+	return(id)
+
+
+print(id_ultima_img('Alectoris-chukar')
